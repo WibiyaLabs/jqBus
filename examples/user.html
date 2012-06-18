@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>jqBus::Example</title>
+    <![if IE]>
+    <script type="text/javascript" src="json2.js"></script>
+    <![endif]>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../jquery.bus-min.js"></script>
+    <script type="text/javascript">
+
+        function onUserGet(response) {
+            jQuery('#txt1').val(JSON.stringify(response));
+        }
+
+        jQuery(document).ready(function () {
+            jQuery('#btn1').click(function () {
+                // The envelope (request message) object
+                var envelope = {
+                    service:'User', // php class name (case sensitive)
+                    method:'get', // method name
+                    callback:onUserGet, // callback function to handle the response message
+                    data:[1234]}; // data to be used with the method, always needs to be wrapped in array
+
+                jqBus.makeRequest(envelope); // make the call
+            });
+
+            jQuery('#btn2').click(function () {
+                // The envelope (request message) object
+                var envelope = {
+                    service:'User', // php class name (case sensitive)
+                    method:'dontTryMe', // method name
+                    callback:onUserGet}; // callback function to handle the response message
+
+                jqBus.makeRequest(envelope); // make the call
+            });
+        });
+
+    </script>
+</head>
+<body>
+<input type="button" value="Click me, please!!!" id="btn1"/>
+<input type="button" value="This will cause error" id="btn2" />
+<br/>
+<label for="txt1">result:</label>
+<br/>
+<textarea id="txt1" rows="10" cols="40"></textarea>
+</body>
+</html>
