@@ -1,20 +1,23 @@
 jqBus
 =====
 
-The jqBus is based on jQuery ajax capabilities and a server side handler.
-The jqBus is working with an "envelope" object and returning a unified response object.
+The jqBus is based on jQuery ajax capabilities and a server side handler.  
+The jqBus is working with an "envelope" object and returning a unified response object.  
+
 The envelope structure example:
-var envelope = {service: 'MyService', method: 'doSomething', callback: myCallback, data: [param1,param2]}
-service - server side class name
-method - a method inside the server side class
-callback - javascript function to call when the operation is completed (success and failure) with the bus response object
-data - (optional) - array of parameters to send to the class method
+
+    var envelope = {service: 'MyService', method: 'doSomething', callback: myCallback, data: [param1,param2]}
+    service  - server side class name
+    method   - a method inside the server side class
+    callback - javascript function to call when the operation is completed (success and failure) with the bus response object
+    data - (optional) - array of parameters to send to the class method
 
 Bus response object:
-{result: 'success|failure', data: {}}
-result - consist of the text success or failure which indicate the operation result
-data - mixed. can be any data type which was serialized by the server side bus handler.
-       In case of an failure result, the data might have an error description, if available
+
+    {result: 'success|failure', data: {}}
+    result - consist of the text success or failure which indicate the operation result
+    data   - mixed. can be any data type which was serialized by the server side bus handler.
+             In case of an failure result, the data might have an error description, if available
 
 
 Requirements
